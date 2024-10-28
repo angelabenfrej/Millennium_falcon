@@ -68,7 +68,8 @@ The SQLite database will contain a table named ROUTES. Each row in the table rep
 
 The front-end  consists of a single-page application offering users a way to upload a JSON file containing the data intercepted by the rebels about the plans of the Empire and displaying the odds (as a percentage) that the Millennium Falcon reaches Endor in time and saves the galaxy.
 
-![Web Interface](dev\static\Web-interface.png)
+![Web Interface](dev/static
+/Web-interface.png)
 
 **empire.json**
 ```json
