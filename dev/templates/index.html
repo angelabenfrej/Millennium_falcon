@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Death Star</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Millennium Falcon Calculator</h1>
+        <input type="file" id="fileInput" />
+        <button onclick="uploadFile()">Calculate the chance of reaching Endor in time!</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        async function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            if (!fileInput.files.length) {
+                alert("Please select a file");
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            const data = await file.text();
+            const jsonData = JSON.parse(data);
+
+            const response = await fetch('/calculate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonData)
+            });
+            
+            const result = await response.json();
+            document.getElementById('result').innerText = `Probability of success: ${result.probability.toFixed(2)}%`;
+        }
+    </script>
+</body>
+<footer>
+    <p>&copy; Angela </p>
+</footer>
+</html>
